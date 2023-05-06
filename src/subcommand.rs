@@ -1,6 +1,8 @@
 use super::*;
 
 pub mod epochs;
+pub mod find_by_number;
+//pub mod find_content;
 pub mod find;
 mod index;
 pub mod info;
@@ -25,6 +27,10 @@ pub(crate) enum Subcommand {
   Epochs,
   #[clap(about = "Run an explorer server populated with inscriptions")]
   Preview(preview::Preview),
+  #[clap(about = "query inscribe by number")]
+  FindNumber(find_by_number::FindNumber),
+//  #[clap(about = "query inscribe content")]
+//  FindContent(find_content::FindContent),
   #[clap(about = "Find a satoshi's current location")]
   Find(find::Find),
   #[clap(about = "Update the index")]
@@ -52,6 +58,8 @@ impl Subcommand {
     match self {
       Self::Epochs => epochs::run(),
       Self::Preview(preview) => preview.run(),
+      Self::FindNumber(find_number) => find_number.run(options),
+//      Self::FindContent(find_content) => find_content.run(options),
       Self::Find(find) => find.run(options),
       Self::Index => index::run(options),
       Self::Info(info) => info.run(options),
