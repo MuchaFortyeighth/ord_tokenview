@@ -1,54 +1,54 @@
 <h1>Inscription {{ self.number }}</h1>
-<div class=inscription>
-%% if let Some(previous) = self.previous {
-<a class=prev href=/inscription/{{previous}}>❮</a>
-%% } else {
-<div>❮</div>
-%% }
-{{Iframe::main(self.inscription_id)}}
-%% if let Some(next) = self.next {
-<a class=next href=/inscription/{{next}}>❯</a>
-%% } else {
-<div>❯</div>
-%% }
-</div>
+<!--<div class=inscription>-->
+<!--%% if let Some(previous) = self.previous {-->
+<!--<a class=prev href=/inscription/{{previous}}>❮</a>-->
+<!--%% } else {-->
+<!--<div>❮</div>-->
+<!--%% }-->
+<!--{{Iframe::main(self.inscription_id)}}-->
+<!--%% if let Some(next) = self.next {-->
+<!--<a class=next href=/inscription/{{next}}>❯</a>-->
+<!--%% } else {-->
+<!--<div>❯</div>-->
+<!--%% }-->
+<!--</div>-->
 <dl>
   <dt>id</dt>
   <dd class=monospace>{{ self.inscription_id }}</dd>
 %% if let Ok(address) = self.chain.address_from_script(&self.output.script_pubkey ) {
   <dt>address</dt>
-  <dd class=monospace>{{ address }}</dd>
+  <dd id="address" class=monospace>{{ address }}</dd>
 %% }
   <dt>output value</dt>
-  <dd>{{ self.output.value }}</dd>
+  <dd id="output_value">{{ self.output.value }}</dd>
 %% if let Some(sat) = self.sat {
   <dt>sat</dt>
-  <dd><a href=/sat/{{sat}}>{{sat}}</a></dd>
+  <dd id="sat"><a href=/sat/{{sat}}>{{sat}}</a></dd>
 %% }
 %% if let Some(content_length) = self.inscription.content_length() {
   <dt>preview</dt>
-  <dd><a href=/preview/{{self.inscription_id}}>link</a></dd>
+  <dd id="preview"><a href=/preview/{{self.inscription_id}}>link</a></dd>
   <dt>content</dt>
-  <dd><a href=/content/{{self.inscription_id}}>link</a></dd>
+  <dd id="content"><a href=/content/{{self.inscription_id}}>link</a></dd>
   <dt>content length</dt>
-  <dd>{{ content_length }} bytes</dd>
+  <dd id="content_lenght">{{ content_length }} bytes</dd>
 %% }
 %% if let Some(content_type) = self.inscription.content_type() {
   <dt>content type</dt>
-  <dd>{{ content_type }}</dd>
+  <dd id="content_type">{{ content_type }}</dd>
 %% }
   <dt>timestamp</dt>
-  <dd><time>{{ self.timestamp }}</time></dd>
+  <dd id="timestamp"><time>{{ self.timestamp }}</time></dd>
   <dt>genesis height</dt>
-  <dd><a href=/block/{{ self.genesis_height }}>{{ self.genesis_height }}</a></dd>
+  <dd id="genesis_height"><a href=/block/{{ self.genesis_height }}>{{ self.genesis_height }}</a></dd>
   <dt>genesis fee</dt>
   <dd>{{ self.genesis_fee }}</dd>
   <dt>genesis transaction</dt>
-  <dd><a class=monospace href=/tx/{{ self.inscription_id.txid }}>{{ self.inscription_id.txid }}</a></dd>
+  <dd id="genesis_transaction"><a class=monospace href=/tx/{{ self.inscription_id.txid }}>{{ self.inscription_id.txid }}</a></dd>
   <dt>location</dt>
-  <dd class=monospace>{{ self.satpoint }}</dd>
+  <dd class=monospace id="location">{{ self.satpoint }}</dd>
   <dt>output</dt>
-  <dd><a class=monospace href=/output/{{ self.satpoint.outpoint }}>{{ self.satpoint.outpoint }}</a></dd>
+  <dd id="output"><a class=monospace href=/output/{{ self.satpoint.outpoint }}>{{ self.satpoint.outpoint }}</a></dd>
   <dt>offset</dt>
-  <dd>{{ self.satpoint.offset }}</dd>
+  <dd id="offset">{{ self.satpoint.offset }}</dd>
 </dl>
